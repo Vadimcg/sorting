@@ -6,6 +6,7 @@
 
 SelectionSort* SelectionSort::selectionSortInstance_= nullptr;
 
+SelectionSortDestroyer* SelectionSort::selectionSortDestroyer_;
 
 SelectionSort::SelectionSort(){
 }
@@ -14,10 +15,18 @@ SelectionSort::~SelectionSort(){
     std::cout<<"SelectionSort instance call destroy";
 }
 
+SelectionSortDestroyer::~SelectionSortDestroyer(){
+    delete selectionSort_;
+}
+void SelectionSortDestroyer::initialize(SelectionSort* selectionSort){
+    this->selectionSort_=selectionSort;
+}
+
 
 SelectionSort& SelectionSort::getInstance(){
     if(!selectionSortInstance_){
         selectionSortInstance_=new  SelectionSort();
+        selectionSortDestroyer_->initialize(selectionSortInstance_);
     }
 
     return *selectionSortInstance_;

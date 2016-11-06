@@ -8,10 +8,14 @@
 #ifndef SORTING_SELECTIONSORT_H
 #define SORTING_SELECTIONSORT_H
 
-
+class SelectionSort;
 
 class SelectionSortDestroyer{
-
+private:
+    SelectionSort* selectionSort_;
+public:
+    ~SelectionSortDestroyer();
+    void initialize(SelectionSort* selectionSort);
 };
 
 class SelectionSort {
@@ -20,6 +24,7 @@ class SelectionSort {
 
         int size_;
         static SelectionSort* selectionSortInstance_;
+        static SelectionSortDestroyer* selectionSortDestroyer_;
 
         void selectionSortRecursive(int* data,int start);
         int findMinimumIndex(int* data,int start);
