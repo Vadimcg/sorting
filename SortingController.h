@@ -8,22 +8,22 @@
 #ifndef SORTING_SELECTIONSORT_H
 #define SORTING_SELECTIONSORT_H
 
-class SelectionSort;
+class SortingController;
 
 class SelectionSortDestroyer{
 private:
-    SelectionSort* selectionSort_;
+    SortingController* selectionSort_;
 public:
     ~SelectionSortDestroyer();
-    void initialize(SelectionSort* selectionSort);
+    void initialize(SortingController* selectionSort);
 };
 
-class SelectionSort {
+class SortingController {
 
     private:
 
         int size_;
-        static SelectionSort* selectionSortInstance_;
+        static SortingController* selectionSortInstance_;
         static SelectionSortDestroyer* selectionSortDestroyer_;
 
         void selectionSortRecursive(int* data,int start);
@@ -32,11 +32,13 @@ class SelectionSort {
 
     public:
 
-        static SelectionSort& getInstance();
+        static SortingController& getInstance();
 
-        SelectionSort();
-        ~SelectionSort();
+        SortingController();
+        ~SortingController();
         void selectionSortRecursiveStart(int* data,int size);
+
+        void insertingSort(int* data);
 
 };
 
