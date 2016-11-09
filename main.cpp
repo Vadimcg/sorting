@@ -8,7 +8,7 @@ int main() {
     const short sizeMass=5;
     int mass[]={22,1,44,55,3,32};
 
-    SortingController::getInstance().selectionSortRecursiveStart(mass,sizeMass);
+    SortingController::getInstance().insertingSort(mass,sizeMass);
 
     for(int i=0;i<sizeMass;i++)
         std::cout<<mass[i]<<std::endl;

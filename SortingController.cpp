@@ -6,7 +6,7 @@
 
 SortingController* SortingController::selectionSortInstance_= nullptr;
 
-SelectionSortDestroyer* SortingController::selectionSortDestroyer_;
+SelectionSortDestroyer SortingController::selectionSortDestroyer_;
 
 SortingController::SortingController(){
 }
@@ -18,6 +18,7 @@ SortingController::~SortingController(){
 SelectionSortDestroyer::~SelectionSortDestroyer(){
     delete selectionSort_;
 }
+
 void SelectionSortDestroyer::initialize(SortingController* selectionSort){
     this->selectionSort_=selectionSort;
 }
@@ -26,7 +27,7 @@ void SelectionSortDestroyer::initialize(SortingController* selectionSort){
 SortingController& SortingController::getInstance(){
     if(!selectionSortInstance_){
         selectionSortInstance_=new  SortingController();
-        selectionSortDestroyer_->initialize(selectionSortInstance_);
+        selectionSortDestroyer_.initialize(selectionSortInstance_);
     }
 
     return *selectionSortInstance_;
@@ -65,16 +66,17 @@ void SortingController::swap(int* data,int indexFirt,int indexSecond){
     }
 }
 
-void  SortingController::insertingSort(int* data){
-    for(int which=1;which<this->size_;which++){
-        int val=data[which];
+void  SortingController::insertingSort(int* data,int size_){
+    int j, temp;
 
-        for(int i=0;i<which;i++){
-            if(data[i]>val){
-                std::copy(data[i],data[i+1],data[which-i]);
-                data[i]=val;
-                break;
-            }
+    for (int i = 0; i < size_; i++){
+        j = i;
+
+        while (j > 0 && data[j] < data[j-1]){
+            temp = data[j];
+            data[j] = data[j-1];
+            data[j-1] = temp;
+            j--;
         }
     }
 

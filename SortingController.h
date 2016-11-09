@@ -24,7 +24,7 @@ class SortingController {
 
         int size_;
         static SortingController* selectionSortInstance_;
-        static SelectionSortDestroyer* selectionSortDestroyer_;
+        static SelectionSortDestroyer selectionSortDestroyer_;
 
         void selectionSortRecursive(int* data,int start);
         int findMinimumIndex(int* data,int start);
@@ -38,7 +38,7 @@ class SortingController {
         ~SortingController();
         void selectionSortRecursiveStart(int* data,int size);
 
-        void insertingSort(int* data);
+        void insertingSort(int* data,int size_);
 
 };
 
